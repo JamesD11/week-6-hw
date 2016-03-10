@@ -44,13 +44,35 @@ $("#search").on("click", function(){
   	$.ajax({url: queryURL, method: 'GET'})
 	 .done(function(response) {
 	 	 
-	 	 console.log(response.data[1].images);
+          $("#results").empty();
+
+          // take results and loop through them to pull out required catergories   
+	 	     for(var i=0; i<response.data.length;i++){
+          console.log(response.data[i].images.fixed_height.url);
+          console.log(response.data[i].rating);
+
+          var answer= $("<div>"); 
+          answer.addClass("gif");
+          answer.attr("id","number-" + i);
+          answer.append("<a href=" + response.data[i].images.fixed_height.url + ">" + response.data[i].images.fixed_height.url + "</a>" );
+          // leaving link here so user can click to get the gif even if I'm not displaying it
+          //or("<img src='response.data[i].images.fixed_height.url'>" );
+          //or .show()????
+          answer.append("<p> Rating: " + response.data[i].rating + "</p>" );
+          $("#results").append(answer);
 
 
-	 	 console.log(queryURL);
-	     console.log(response);
+        
+	 	      console.log(queryURL);
+	        console.log(response);
+        }
 	     
 	});
+}
+
+//function to animate gif's
+function play(){
+  //animate gif
 }
 
   
@@ -60,7 +82,11 @@ $("#search").on("click", function(){
 // document wide click listener to determine which button was clicked
 // then run function results on it 
 
-$(document).on('click', '.sport', results);
+$(document).on("click", ".sport", results);
+
+//document wide click listener for each gif to play
+ 
+// $(document).on("click", ".gif", play);
 
 
 
