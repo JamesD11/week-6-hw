@@ -54,10 +54,12 @@ $("#search").on("click", function(){
           var answer= $("<div>"); 
           answer.addClass("gif");
           answer.attr("id","number-" + i);
+          
           answer.append("<a href=" + response.data[i].images.fixed_height.url + ">" + response.data[i].images.fixed_height.url + "</a>" );
           // leaving link here so user can click to get the gif even if I'm not displaying it
           //or("<img src='response.data[i].images.fixed_height.url'>" );
           //or .show()????
+          //or some sort of response.stringify/parse issue??
           answer.append("<p> Rating: " + response.data[i].rating + "</p>" );
           $("#results").append(answer);
 
@@ -71,9 +73,12 @@ $("#search").on("click", function(){
 }
 
 //function to animate gif's
-function play(){
+/*function play(){
+  var choice= $(this).attr("number-"+i);
   //animate gif
-}
+  choice.append(//url to looping gif)
+  //basically would load images to page static and "on click" load a looping gif inplace of the static image
+}*/
 
   
 
